@@ -27,7 +27,7 @@ function App() {
         <div className="weathhead">
         <h1>Previsão do tempo</h1>
         </div>
-        <div className="mainweather">
+        <div className="weather-container">
             <div className="weather">
                 <form onSubmit={apiCall} className="input-container">
                     <input type="text" placeholder="Escreva o nome da cidade" name="loc" />
@@ -35,8 +35,9 @@ function App() {
                       <img src={Search}/>
                     </button>
                 </form>
-      
-            </div>    
+            </div>
+            <hr/>
+            <h2>Capitais</h2> 
         </div>
         
     </>
