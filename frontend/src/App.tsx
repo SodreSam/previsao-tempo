@@ -1,35 +1,47 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+import Search from './assets/search.svg'
+import axios from "axios"
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+type Weather = {
+  descp: string;
+  temp: string;
+
+}
+
+function App() {
+
+    const [weather, setWeather] = useState('');
+    const [city, setCity] = useState('');
+    const apiKey ='2844d4d1a0b43a667a236ae0e2c40213';
+
+    const apiCall = () => {
+     
+
+    }
+
+
+    return (<>
+        <div className="weathhead">
+        <h1>Previsão do tempo</h1>
+        </div>
+        <div className="mainweather">
+            <div className="weather">
+                <form onSubmit={apiCall} className="input-container">
+                    <input type="text" placeholder="Escreva o nome da cidade" name="loc" />
+                    <button className="bttn">
+                      <img src={Search}/>
+                    </button>
+                </form>
+      
+            </div>    
+        </div>
+        
     </>
-  )
+    
+    )
 }
 
 export default App
