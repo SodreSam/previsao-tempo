@@ -2,7 +2,7 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
+  text-align: left;
 }
 
 .logo {
@@ -45,6 +45,7 @@
   border: 1px solid #303030;
   border-radius: 5px;
   width: 100%;
+  max-width: 500px;
   background-color: #1a1a1a;
   display: flex;
   align-items: center;
@@ -57,11 +58,78 @@
 
 .input-container input{
   width: 100%;
-  max-width: 350px;
+  max-width: 400px;
   padding: 1rem;
   border: none;
   border-radius: 5px;
   background-color: #1a1a1a;
   outline: none;
   font-size: 16px;
+}
+
+.input-container button{
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  outline: none;
+}
+
+.weather-container{
+  display: flex;
+  flex-direction: column;
+}
+.weather-container h2{
+  display: flex;
+  font-size: 26px;
+}
+
+.card-section{
+  width: 500px;
+  border-radius: 5px;
+  margin: 0 1rem 2rem 0;
+  background-color: #dba83a;
+}
+
+.card-section .header{
+  display: flex;
+  justify-content: space-between;
+  padding: 0rem 2rem;
+}
+
+.main-card-weather{
+  display: flex;
+  margin: 0 1rem 2rem 1rem;
+  width: 100%;
+  max-width: 350px;
+  justify-content: space-around;
+  font-size: 48px;
+  font-weight: 500;
+}
+
+.min-max{
+  display: flex;
+  margin: 0 0 0 2rem;
+  width: 100%;
+  max-width: 120px;
+  justify-content: space-around;
+}
+
+.min-max .min{
+  display: flex;
+}
+.min-max .max{
+  display: flex;
+}
+
+.second-line-weather{
+  display: flex;
+  width: 100%;
+  max-width: 300px;
+  justify-content: space-between;
 }
