@@ -38,6 +38,7 @@ const WeatherForecast: React.FC = () => {
     'Manaus',
     'João Pessoa'
   ];
+  
 
   const [cityWeatherData, setCityWeatherData] = useState<CityWeatherData[]>([]);
   const [city, setCity] = useState('');
@@ -144,6 +145,7 @@ const WeatherForecast: React.FC = () => {
 
   return (
     <div>
+      <h1>Previsão do Tempo</h1>
       <div className='input-container'>
         <input
           type="text"
@@ -183,29 +185,27 @@ const WeatherForecast: React.FC = () => {
         <p>Sem dados disponíves. Por favor, pesquise pela cidade desejada!</p>
       )}
 
-      {/* Nova tabela para as capitais brasileiras */}
-      <div>
-        <h2>Previsão do Tempo para Capitais Brasileiras</h2>
+      <div className='capitals-container'>
+        <h2>Capitais</h2>
         <table>
           <thead>
             <tr>
-              <th>Cidade</th>
-              <th>Temperatura Mínima (°C)</th>
-              <th>Temperatura Máxima (°C)</th>
+              <th>Min</th>
+              <th>Máx</th>
             </tr>
           </thead>
           <tbody>
             {cityWeatherData.map((cityData, index) => (
               <tr key={index}>
-                <td>{cityData.cityName}</td>
                 {cityData.weatherData ? (
                   <>
-                    <td>{cityData.weatherData.minTemperature}</td>
-                    <td>{cityData.weatherData.maxTemperature}</td>
+                    <td>{Math.round(cityData.weatherData.minTemperature)}</td>
+                    <td>{Math.round(cityData.weatherData.maxTemperature)}</td>
                   </>
                 ) : (
                   <td colSpan={2}>Não disponível</td>
                 )}
+                <td>{cityData.cityName}</td>
               </tr>
             ))}
           </tbody>

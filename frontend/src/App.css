@@ -133,3 +133,28 @@
   max-width: 300px;
   justify-content: space-between;
 }
+
+.capitals-container{
+  border-top: 1px solid #ffff;
+  margin-top: 30px;
+}
+
+h2{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: start;
+
+}
+
+th{
+  padding: 0 20px 0 0;
+  font-weight: normal;
+
+}
+
+tr{
+  text-align: start;
+  font-weight: bold;
+}
