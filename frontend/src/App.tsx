@@ -36,8 +36,73 @@ function App() {
                     </button>
                 </form>
             </div>
-            <hr/>
-            <h2>Capitais</h2> 
+            <div className='capitals-container'>
+                <h2>Capitais</h2>
+                <div className='capitals-table'>
+                    <table>
+                        <tr>
+                            <th>Min</th>
+                            <th>Máx</th>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>25</td>
+                            <td>Rio de Janeiro</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>25</td>
+                            <td>São Paulo</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>25</td>
+                            <td>Belo Horizonte</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>25</td>
+                            <td>Brasília</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>25</td>
+                            <td>Belém</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <th>Min</th>
+                            <th>Máx</th>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>25</td>
+                            <td>Salvador</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>25</td>
+                            <td>Curitiba</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>25</td>
+                            <td>Fortaleza</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>25</td>
+                            <td>Manaus</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>25</td>
+                            <td>João Pessoa</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
         
     </>

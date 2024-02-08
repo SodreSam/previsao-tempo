@@ -65,3 +65,33 @@
   outline: none;
   font-size: 16px;
 }
+
+.capitals-container{
+  border-top: 1px solid #ffff;
+  margin-top: 30px;
+}
+
+.capitals-table{
+  display: flex;
+  justify-content: space-between;
+}
+
+h2{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: start;
+  text-indent: 10px;
+}
+
+th{
+  padding: 0 15px 0 0;
+  font-weight: normal;
+
+}
+
+tr{
+  text-align: start;
+  font-weight: bold;
+}
