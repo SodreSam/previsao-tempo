@@ -139,6 +139,19 @@
   margin-top: 30px;
 }
 
+.table-container {
+  display: flex;
+}
+
+.half-table {
+  flex: 1;
+  white-space: nowrap;
+}
+
+.half-table + .half-table {
+  margin-left: 70px;
+}
+
 h2{
   margin-top: 10px;
   margin-bottom: 10px;
@@ -149,7 +162,7 @@ h2{
 }
 
 th{
-  padding: 0 20px 0 0;
+  padding: 0 20px 10px 0;
   font-weight: normal;
 
 }

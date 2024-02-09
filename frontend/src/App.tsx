@@ -24,6 +24,23 @@ interface CityWeatherData {
   cityName: string;
   weatherData: WeatherData | null;
 }
+  
+const translateDescription = (description: string): string => {
+  const weatherDescriptions: { [key: string]: string } = {
+    'clear sky': 'Céu limpo',
+    'few clouds': 'Poucas nuvens',
+    'scattered clouds': 'Nuvens esparsas',
+    'broken clouds': 'Nuvens dispersas',
+    'light rain': 'Chuva fraca',
+    'rain': 'Chuva',
+    'thunderstorm': 'Tempestade',
+    'snow': 'Neve',
+    'mist': 'Nevoeiro',
+    'wind': 'Vento forte',
+    'overcast clouds': 'Nublado',
+  };
+  return weatherDescriptions[description] || 'Descrição não disponível';
+};
 
 const WeatherForecast: React.FC = () => {
   const cities = [
@@ -38,13 +55,15 @@ const WeatherForecast: React.FC = () => {
     'Manaus',
     'João Pessoa'
   ];
-  
 
   const [cityWeatherData, setCityWeatherData] = useState<CityWeatherData[]>([]);
   const [city, setCity] = useState('');
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [dailyForecast, setDailyForecast] = useState<DailyForecast[] | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const splitIndex = Math.ceil(cityWeatherData.length / 2);
+  const firstHalfCities = cityWeatherData.slice(0, splitIndex);
+  const secondHalfCities = cityWeatherData.slice(splitIndex);
 
   const fetchWeatherData = async () => {
     setLoading(true);
@@ -68,7 +87,7 @@ const WeatherForecast: React.FC = () => {
         const date = new Date(item.dt * 1000);
         const dayOfWeek = date.toLocaleDateString('pt-br', { weekday: 'long' });
         const temperature = item.main.temp;
-        const description = item.weather[0].description;
+        const description = translateDescription(item.weather[0].description);
         if (!dailyForecastData.some(forecast => forecast.dayOfWeek === dayOfWeek)) {
           dailyForecastData.push({
             dayOfWeek,
@@ -161,22 +180,22 @@ const WeatherForecast: React.FC = () => {
         <p>Carregando...</p>
       ) : weatherData && dailyForecast ? (
         <div>
-          <h2>Current Weather</h2>
-          <p>Temperatura: {weatherData.temperature}°C</p>
-          <p>Min Temperature: {weatherData.minTemperature}°C</p>
-          <p>Max Temperature: {weatherData.maxTemperature}°C</p>
-          <p>Sensação: {weatherData.feelsLike}°C</p>
+          <h2>Clima Atual</h2>
+          <p>Temperatura: {Math.round(weatherData.temperature)}°C</p>
+          <p>Temperatura Mínima: {Math.round(weatherData.minTemperature)}°C</p>
+          <p>Temperatura Máxima: {Math.round(weatherData.maxTemperature)}°C</p>
+          <p>Sensação: {Math.round(weatherData.feelsLike)}°C</p>
           <p>Humidade: {weatherData.humidity}%</p>
-          <p>Vento: {weatherData.windSpeed} m/s</p>
-          <p>Description: {weatherData.description}</p>
+          <p>Vento: {Math.round(weatherData.windSpeed)} m/s</p>
+          <p>Descrição: {translateDescription(weatherData.description)}</p>
           <h2>Previsão da semana</h2>
           <ul>
             {dailyForecast.map((forecast, index) => (
               <li key={index}>
-                <p>Day: {forecast.dayOfWeek}</p>
-                <p>Min Temperature: {forecast.minTemperature}°C</p>
-                <p>Max Temperature: {forecast.maxTemperature}°C</p>
-                <p>Description: {forecast.description}</p>
+                <p>Dia: {forecast.dayOfWeek}</p>
+                <p>Temperatura Mínima: {Math.round(forecast.minTemperature)}°C</p>
+                <p>Temperatura Máxima: {Math.round(forecast.maxTemperature)}°C</p>
+                <p>Descrição: {forecast.description}</p>
               </li>
             ))}
           </ul>
@@ -187,29 +206,54 @@ const WeatherForecast: React.FC = () => {
 
       <div className='capitals-container'>
         <h2>Capitais</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Min</th>
-              <th>Máx</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cityWeatherData.map((cityData, index) => (
-              <tr key={index}>
-                {cityData.weatherData ? (
-                  <>
-                    <td>{Math.round(cityData.weatherData.minTemperature)}</td>
-                    <td>{Math.round(cityData.weatherData.maxTemperature)}</td>
-                  </>
-                ) : (
-                  <td colSpan={2}>Não disponível</td>
-                )}
-                <td>{cityData.cityName}</td>
+        <div className='table-container'>
+          <table className='half-table'>
+            <thead>
+              <tr>
+                <th>Min</th>
+                <th>Máx</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {firstHalfCities.map((cityData, index) => (
+                <tr key={index}>
+                  {cityData.weatherData ? (
+                    <>
+                      <td>{Math.round(cityData.weatherData.minTemperature)}</td>
+                      <td>{Math.round(cityData.weatherData.maxTemperature)}</td>
+                    </>
+                  ) : (
+                    <td colSpan={2}>Não disponível</td>
+                  )}
+                  <td>{cityData.cityName}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <table className='half-table'>
+            <thead>
+              <tr>
+                <th>Min</th>
+                <th>Máx</th>
+              </tr>
+            </thead>
+            <tbody>
+              {secondHalfCities.map((cityData, index) => (
+                <tr key={index}>
+                  {cityData.weatherData ? (
+                    <>
+                      <td>{Math.round(cityData.weatherData.minTemperature)}</td>
+                      <td>{Math.round(cityData.weatherData.maxTemperature)}</td>
+                    </>
+                  ) : (
+                    <td colSpan={2}>Não disponível</td>
+                  )}
+                  <td>{cityData.cityName}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
