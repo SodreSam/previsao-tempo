@@ -38,6 +38,7 @@ const translateDescription = (description: string): string => {
     'mist': 'Nevoeiro',
     'wind': 'Vento forte',
     'overcast clouds': 'Nublado',
+    'moderate rain': 'Chuva moderada'
   };
   return weatherDescriptions[description] || 'Descrição não disponível';
 };
